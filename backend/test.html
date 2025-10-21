@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SnapLink Test</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 80px;">
+  <h2>SnapLink — Test Shortener</h2>
+  <input type="text" id="urlInput" placeholder="Enter a long URL" size="40" />
+  <button id="shortenBtn">Shorten</button>
+
+  <p id="result"></p>
+
+  <script>
+    const button = document.getElementById('shortenBtn');
+    const input = document.getElementById('urlInput');
+    const result = document.getElementById('result');
+
+    button.addEventListener('click', async () => {
+      const url = input.value;
+      if (!url) {
+        alert("Please enter a URL");
+        return;
+      }
+
+      try {
+        const response = await fetch('http://localhost:8001/url', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ url })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          result.innerHTML = `Shortened URL: <a href="http://localhost:8001/${data.id}" target="_blank">http://localhost:8001/${data.id}</a>`;
+        } else {
+          result.innerHTML = `Error: ${data.error}`;
+        }
+      } catch (err) {
+        result.innerText = "❌ Connection failed — check if backend is running";
+      }
+    });
+  </script>
+</body>
+</html>
