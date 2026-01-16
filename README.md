@@ -15,10 +15,6 @@ development practices**.
 - 🚀 Fast redirection to original URLs
 - 🧠 Collision-free short code generation
 - 📊 Basic request handling and validation
-- ⚙️ RESTful API design
-- 🧹 Clean Git history and structured backend
-- 🔐 Secure handling of environment variables
-
 ---
 
 ## 🛠 Tech Stack
@@ -30,7 +26,7 @@ development practices**.
 - Mongoose
 
 ### Frontend (if applicable)
-- React *(optional / minimal UI)*
+- React
 
 ### Dev & Tooling
 - Git & GitHub
